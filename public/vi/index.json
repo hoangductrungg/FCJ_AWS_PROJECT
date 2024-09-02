@@ -1,0 +1,127 @@
+[
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Session Management",
+	"tags": [],
+	"description": "",
+	"content": "Build and Deplpy project Frontend in AWs Tổng quan Trong bài lab này, bạn sẽ tìm hiểu các khái niệm cơ bản và thực hành về Build and Deplpy project Frontend in AWs. Thực hành viết câu hình cho gitlab\nNội dung Giới thiệu Các bước chuẩn bị Tạo kết nối đến máy chủ EC2 và khởi tạo gitlab runner Viết kịch bản cho gitlab Check gitlab đã build thành công chưa Dọn dẹp tài nguyên "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này, chúng ta sẽ cần tạo một VPC có 2 subnet public / private. Sau đó tạo 1 EC2 Instance Linux nằm trong public subnet, 1 EC2 Instance Windows nằm trong private subnet.\nTổng quan kiến trúc sau khi các bạn hoàn tất bước này sẽ như sau:\nĐể tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :\nGiới thiệu về Amazon EC2 Làm việc với Amazon VPC Nội dung Tạo VPC Tạo Public subnet Tạo Private subnet Tạo security group Tạo máy chủ Linux public Tạo máy chủ Windows private "
+},
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Build and Deploy CI/CD Frontend project in AWS",
+	"tags": [],
+	"description": "",
+	"content": "AWS cung cấp một loạt các dịch vụ và công cụ mạnh mẽ để giúp bạn xây dựng và triển khai các dự án frontend một cách hiệu quả và linh hoạt. Việc lựa chọn công cụ phù hợp sẽ phụ thuộc vào quy mô dự án, yêu cầu về cấu hình, và kinh nghiệm của đội ngũ phát triển.\nVới việc sử dụng AWS để build và deploy frontend, bạn sẽ có được những ưu điểm sau:\nKhả năng mở rộng: AWS cho phép bạn dễ dàng mở rộng quy mô ứng dụng để đáp ứng nhu cầu tăng trưởng của người dùng. Đa dạng các dịch vụ: Bạn có thể kết hợp nhiều dịch vụ khác nhau của AWS để tạo ra một pipeline CI/CD hoàn chỉnh. Tính ổn định và bảo mật: AWS đảm bảo tính sẵn sàng cao và các biện pháp bảo mật mạnh mẽ cho ứng dụng của bạn. Cộng đồng lớn: Có một cộng đồng người dùng AWS rất lớn, bạn dễ dàng tìm thấy tài liệu, hướng dẫn và hỗ trợ khi cần. "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/3.1-public-instance/",
+	"title": "Kết nối đến máy chủ Public",
+	"tags": [],
+	"description": "",
+	"content": "\nTruy cập vào giao diện quản trị của dịch vụ EC2. Click chọn Tích vào ô gitlab-runner. Click Connect. Sau khi connect xong. Sử dụng lệnh sudo -i để tiến vào user root. Truy cập vào project mà bạn đã push lên truớc dó Tiếp đến ta chọn Settings Click CICD. Click Expand Runner. Sau đó chọn New project runner Tiếp đến ở mục tags\nSetname mục tags mà bạn muốn Mục Configuration (optional) đặt tên như bên trên bạn đặt Tích chọn Create Runner Sau khi create runner xong tích chọn Linux Kéo xuống dưới ta sẽ thấy dòng chữ How do iintall Gitlab Runner? Tích chọn vào đấy . Tích chọn xong ta sẽ thấy như bên ảnh , rồi sau đó ta copy hết vào chuyển sang console AWS Paste hết thứ ta vừa copy vào và Enter Sau khi paste xong ta trở về gitlab runner copy như trong ảnh Rồi quay trở lại console AWS dán vào Sử dụng lệnh vi /etc/gitlab-runner/config.toml đê chỉnh số lương gitlab runner có thể chạy trên các project . Ở đây mình chỉnh là 4 "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.1-createvpc/",
+	"title": "Tạo EC2 ",
+	"tags": [],
+	"description": "",
+	"content": "Tạo EC2 ** Truy cập giao diện quản trị dịch vụ EC2 Click Launch Instance. Keo xuong Tại mục Name tag điền gitlab-runner. Click Ubuntu. Click Create security group. Click Allow SSH traffic from. Click Allow HTTPS traffic from the internet. Click Allow HTTP traffic from the internet. "
+},
+{
+	"uri": "//localhost:1313/vi/4-s3log/4.1-updateiamrole/",
+	"title": "Viêt câu hình CICD trên gitlab",
+	"tags": [],
+	"description": "",
+	"content": "Để viết cấu hình CICD cho gitlab đầu tiên ta phải có một file .gitlab-ci.yml đê viết kịch bản cho câu hình đó\nTạo file để viết kịch bản cho file .gitlab-ci.yml Truy cập vào project mà ta đã tạo trước đó Click vào dấu cộng. Click New file. Đặt tên cho file .gitlab-ci.yml. Dưới đây là 1 kịch bản tôi đã viết sẵn bạn có thể tham khảo\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "\rBạn cần tạo sẵn 1 Linux instance thuộc public subnet và 1 Window instance thuộc private subnet để thực hiện bài thực hành này.\nĐể tìm hiểu cách tạo các EC2 instance và VPC với public/private subnet các bạn có thể tham khảo bài lab :\nGiới thiệu về Amazon EC2 Làm việc với Amazon VPC Để sử dụng System Manager để quản lý window instance nói riêng và các instance nói chung của chúng ta trên AWS, ta cần phải cung cấp quyền cho các instance của chúng ta có thể làm việc với System Manager.Trong phần chuẩn bị này, chúng ta cũng sẽ tiến hành tạo IAM Role để cấp quyền cho các instance có thể làm việc với System Manager.\nNội dung Chuẩn bị VPC và EC2 Instance Tạo IAM Role "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.2-createpublicsubnet/",
+	"title": "Tạo Public subnet",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Public subnet Click Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn Lab VPC. Tại mục Subnet name điền Lab Public Subnet. Tại mục Availability Zone chọn Availability zone đầu tiên. Tại mục IPv4 CIRD block điền 10.10.1.0/24. Kéo xuống cuối trang , click Create subnet.\nClick chọn Lab Public Subnet.\nClick Actions. Click Edit subnet settings. Click chọn Enable auto-assign public IPv4 address. Click Save. Click Internet Gateways. Click Create internet gateway. Tại trang Create internet gateway. Tại mục Name tag điền Lab IGW. Click Create internet gateway. Sau khi tạo thành công, click Actions. Click Attach to VPC. Tại trang Attach to VPC. Tại mục Available VPCs chọn Lab VPC. Click Attach internet gateway. Kiểm tra quá trình attach thành công như hình dưới. Tiếp theo chúng ta sẽ tạo một custom route table để gán vào Lab Public Subnet. Click Route Tables. Click Create route table. Tại trang Create route table. Tại mục Name, điền Lab Publicrtb. Tại mục VPC, chọn Lab VPC. Click Create route table. Sau khi tạo route table thành công. Click Edit routes. Tại trang Edit routes. Click Add route. Tại mục Destination điền 0.0.0.0/0 Tại mục Target chọn Internet Gateway sau đó chọn Lab IGW. Click Save changes. Click tab Subnet associations. Click Edit subnet associations để tiến hành associate custom routable chúng ta vừa tạo vào Lab Public Subnet. Tại trang Edit subnet associations. Click chọn Lab Public Subnet. Click Save associations. Kiểm tra thông tin route table đã được associate với Lab Public Subnet và thông tin route đi internet đã được trỏ đến Internet Gateway như hình dưới. "
+},
+{
+	"uri": "//localhost:1313/vi/3-accessibilitytoinstances/",
+	"title": "Tạo kết nối đến máy chủ EC2",
+	"tags": [],
+	"description": "",
+	"content": "Trong bước này, chúng ta sẽ thực hiện tạo kết nối đến các máy chủ EC2 của chúng ta, nằm trong cả public và private subnet.\nNội dung 3.1. Tạo Kết nối đến máy chủ EC2 Public 3.2. Tạo Kết nối đến máy chủ EC2 Private\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.3-createprivatesubnet/",
+	"title": "Tạo Private subnet",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Private subnet Click Subnets. Click Create subnet. Tại trang Create subnet. Tại mục VPC ID click chọn Lab VPC. Tại mục Subnet name điền Lab Private Subnet. Tại mục Availability Zone chọn Availability zone đầu tiên. Tại mục IPv4 CIRD block điền 10.10.2.0/24. Kéo xuống cuối trang , click Create subnet. Bước tiếp theo chúng ta sẽ tạo các security group cần thiết cho bài lab.\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.4-createsecgroup/",
+	"title": "Tạo các security group",
+	"tags": [],
+	"description": "",
+	"content": "Tạo các security group Trong bước này chúng ta sẽ tiến hành tạo các security group được sử dụng cho các instance của chúng ta. Các bạn có thể thấy, các securiy group này sẽ không cần phải mở các port truyền thống để ssh như port 22 hoặc remote desktop thông qua port 3389.\nTạo security group cho Linux instance nằm trong public subnet Truy cập giao diện quản trị dịch vụ VPC Click Security Group. Click Create security group. Tại mục Security group name, điền SG Public Linux Instance. Tại mục Description, điền SG Public Linux Instance. Tại mục VPC, click dấu X để chọn lại Lab VPC bạn đã tạo cho bài lab này. Giữ nguyên Outbound rule, kéo chuột xuống phía dưới. Click Create security group. Các bạn có thể thấy, security group chúng ta tạo sử dụng cho Linux public instance sẽ không cần phải mở các port truyền thống để ssh như port 22.\nTạo security group cho Windows instance nằm trong private subnet Sau khi tạo thành công security group cho Linux instance nằm trong public subnet, click vào link Security Groups để quay trở lại danh sách Security groups. Click Create security group.\nTại mục Security group name, điền SG Private Windows Instance.\nTại mục Description, điền SG Private Windows Instance. Tại mục VPC, click dấu X để chọn lại Lab VPC bạn đã tạo cho bài lab này. Kéo chuột xuống phía dưới. Thêm Outbound rule cho phép kết nối TCP 443 tới 10.10.0.0/16 ( CIDR của Lab VPC chúng ta đã tạo) Click Create security group. Đối với Instance trong private subnet, chúng ta sẽ kết nối tới endpoint của Session Manager qua kết nối đã được mã hóa TLS. vì thế chúng ta cần cho phép kết nối chiều ra từ instance của mình tới VPC CIDR thông qua port 443.\nTạo security group cho VPC Endpoint Trong bước này, chúng ta sẽ tạo security group cho VPC Endpoint của Session Manager. Sau khi tạo thành công security group cho Windows instance trong private subnet, click vào link Security Groups để quay trở lại danh sách Security groups. Click Create security group. Tại mục Security group name, điền SG VPC Endpoint. Tại mục Description, điền SG VPC Endpoint. Tại mục VPC, click dấu X để chọn lại Lab VPC bạn đã tạo cho bài lab này. Kéo chuột xuống phía dưới. Xóa Outbound rule. Thêm Inbound rule cho phép TCP 443 đến từ 10.10.0.0/16 ( CIDR của Lab VPC chúng ta đã tạo ). Click Create security group. Như vậy chúng ta đã tiến hành xong việc tạo các security group cần thiết cho các EC2 instance và VPC Endpoint.\n"
+},
+{
+	"uri": "//localhost:1313/vi/4-s3log/",
+	"title": "Check pipelines",
+	"tags": [],
+	"description": "",
+	"content": "Sau khi viết kịch bản xong ta check pipelines xem đã passed chưa Truy cập vào Build Click Pipelines , sau đó check xem pipelines dã chạy thành công chua Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách build và deploy CI/CD Frontend trên AWS . Bây giờ chúng ta sẽ clean up nhé !!!!\n"
+},
+{
+	"uri": "//localhost:1313/vi/5-portfwd/",
+	"title": "Check pipelines",
+	"tags": [],
+	"description": "",
+	"content": "Sau khi viết kịch bản xong ta check pipelines xem đã passed chưa Truy cập vào Build Click Pipelines , sau đó check xem pipelines dã chạy thành công chua Chúc mừng bạn đã hoàn tất bài thực hành hướng dẫn cách build và deploy CI/CD Frontend trên AWS . Bây giờ chúng ta sẽ clean up nhé !!!!\n"
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.5-createec2linux/",
+	"title": "Tạo Project gitlab và push folder lên project gitlab",
+	"tags": [],
+	"description": "",
+	"content": " Truy cập vào Gitlab Click New project. Click Create blank project. Tại trang Gitlab project. Đặt tên cho project gitlab-runne tích bỏ chọn Initialize repository with a README. Tại trang gitlab Copy 2 dòng đầu Git global setup Sau khi copy xong truy cập vào Terminal mà file bạn muốn push vào Sau đó paste 2 dòng bạn vừa copy Sau dó gõ git init Tiếp đến làm theo tứ tự trong ảnh và paste vào Sau khi push xong ta sẽ được như ảnh "
+},
+{
+	"uri": "//localhost:1313/vi/6-cleanup/",
+	"title": "Dọn dẹp tài nguyên  ",
+	"tags": [],
+	"description": "",
+	"content": "Chúng ta sẽ tiến hành các bước sau để xóa các tài nguyên chúng ta đã tạo trong bài thực hành này.\nXóa EC2 instance Truy cập giao diện quản trị dịch vụ EC2 Click Instances. Click chọn cả 2 instance Public Linux Instance và Private Windows Instance. Click Instance state. Click Terminate instance, sau đó click Terminate để xác nhận. Truy cập giao diện quản trị dịch vụ IAM Click Roles. Tại ô tìm kiếm , điền SSM. Click chọn SSM-Role. Click Delete, sau đó điền tên role SSM-Role và click Delete để xóa role. Click Users. Click chọn user Portfwd. Click Delete, sau đó điền tên user Portfwd và click Delete để xóa user. Xóa S3 bucket Truy cập giao diện quản trị dịch vụ System Manager - Session Manager. Click tab Preferences. Click Edit. Kéo chuột xuống dưới. Tại mục S3 logging. Bỏ chọn Enable để tắt tính năng logging. Kéo chuột xuống dưới. Click Save. Truy cập giao diện quản trị dịch vụ S3 Click chọn S3 bucket chúng ta đã tạo cho bài thực hành. ( Ví dụ : lab-fcj-bucket-0001 ) Click Empty. Điền permanently delete, sau đó click Empty để tiến hành xóa object trong bucket. Click Exit. Sau khi xóa hết object trong bucket, click Delete Điền tên S3 bucket, sau đó click Delete bucket để tiến hành xóa S3 bucket. Xóa các VPC Endpoint Truy cập vào giao diện quản trị dịch vụ VPC Click Endpoints. Chọn 4 endpoints chúng ta đã tạo cho bài thực hành bao gồm SSM, SSMMESSAGES, EC2MESSAGES, S3GW. Click Actions. Click Delete VPC endpoints. Tại ô confirm , điền delete. Click Delete để tiến hành xóa các endpoints. Click biểu tượng refresh, kiểm tra tất cả các endpoints đã bị xóa trước khi làm bước tiếp theo. Xóa VPC Truy cập vào giao diện quản trị dịch vụ VPC Click Your VPCs. Click chọn Lab VPC. Click Actions. Click Delete VPC. Tại ô confirm, điền delete để xác nhận, click Delete để thực hiện xóa Lab VPC và các tài nguyên liên quan. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createec2/2.1.6-createec2windows/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
